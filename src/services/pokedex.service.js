@@ -1,49 +1,77 @@
 import PokedexModel from "../schemas/pokedex.schema.js";
 
-//service donde tenemos todos las funciones para crear, listar, actualizar y eliminar pokemon
+// service: aqui es donde ponemos la logica de base de datos.
+// el controller llama a estas funciones y aqui hacemos las consultas a mongodb con mongoose.
 
-//aquí recibiremos los datos y guardaremos el pokemon con sus atributos
+// aqui recibiremos los datos y guardaremos el pokemon con sus atributos
 export const createPokedex = async function (number, name, type, weakness, description) {
     try {
+        // creamos el pokemon con los datos recibidos
         const pokedex = new PokedexModel({ number, name, type, weakness, description });
+
+        // guardamos en la base de datos y devolvemos el pokemon ya guardado
         return await pokedex.save();
     } catch (e) {
+        // si algo falla al guardar, lanzamos error para que lo gestione el controller
         throw Error('Error creating pokedex: ');
     }
 }
 
-//podremos listar los pokemon ordenados por su número de la pokedex
+// podremos listar los pokemon ordenados por su número de la pokedex
 export const getPokedex = async function () {
     try {
-        return await PokedexModel.find().sort({number: 1});
+        // buscamos todos los pokemon y los ordenamos por el campo number (numero de la pokedex)
+        return await PokedexModel.find().sort({ number: 1 });
     } catch (e) {
+        // si falla la consulta, lanzamos error para que lo gestione el controller
         throw Error('Error fetching pokedex');
     }
 }
 
-//podemos actualizar nuestro pokemon buscándolo por su número de la pokedex (id)
-export const updatePokedex = async (number, name, type, weakness, description) => {
+// podemos actualizar nuestro pokemon buscándolo por su id
+export const updatePokedex = async (id, number, name, type, weakness, description) => {
     try {
-        const pokedex = await PokedexModel.findById(number);
+        // primero comprobamos si existe un pokemon con ese id
+        const pokedex = await PokedexModel.findById(id);
+
+        // si no existe, lanzamos un error con status 404 (esto lo usa el controller para responder correctamente)
         if (!pokedex) {
-            throw Error('There is no pokemon with that Id');
+            const err = new Error('There is no pokemon with that ID');
+            err.status = 404;
+            throw err;
         }
 
-        return await PokedexModel.findByIdAndUpdate(number, { name, type, weakness, description });
+        // si existe, actualizamos sus datos
+        return await PokedexModel.findByIdAndUpdate(
+            id,
+            { number, name, type, weakness, description },
+            // new: true devuelve el documento ya actualizado
+            // runvalidators: true hace que al actualizar se respeten las validaciones del schema
+            { new: true, runValidators: true }
+        );
     } catch (e) {
-        throw Error(e);
+        // relanzamos el error para que llegue al controller
+        throw e;
     }
 }
 
-//podemos eliminar pokemon buscándolo por su numero 
-export const deletePokedex = async (number) => {
+// podemos eliminar pokemon buscándolo por su id
+export const deletePokedex = async (id) => {
     try {
-        const pokedex = await PokedexModel.findById(number);
+        // primero comprobamos si existe un pokemon con ese id
+        const pokedex = await PokedexModel.findById(id);
+
+        // si no existe, lanzamos error con status 404
         if (!pokedex) {
-            throw Error('There is no pokemon with that ID');
+            const err = new Error('There is no pokemon with that ID');
+            err.status = 404;
+            throw err;
         }
-        return await PokedexModel.findByIdAndDelete(number);
+
+        // si existe, lo eliminamos y devolvemos el documento eliminado
+        return await PokedexModel.findByIdAndDelete(id);
     } catch (e) {
-        throw Error('Error deleting pokemon');
+        // relanzamos el error para que lo gestione el controller
+        throw e;
     }
 }
