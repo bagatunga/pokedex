@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import normalize from 'normalize-mongoose/index.js';
 
+//modelado de datos, definición de cómo son nuestros datos en mongo
+//he decidido cambiar un poco los atributos porque no me convencían los de la anterior entrega
 const { Schema, model } = mongoose;
 const pokedexSchema = new Schema({
     number: {
