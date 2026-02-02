@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import normalize from 'normalize-mongoose/index.js';
 
 const { Schema, model } = mongoose;
-const categorySchema = new Schema({
+const pokedexSchema = new Schema({
     number: {
         type: Number,
         required: true
