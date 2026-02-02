@@ -3,7 +3,7 @@ import cors from 'cors';
 import connectDB from './src/config/db.js';
 import { config } from 'dotenv';
 import { connect } from 'mongoose';
-import { pruebaPokemon } from './src/controller/pokedex.controller.js'
+import { createPokedex, getPokedex, updatePokedex, deletePokedex } from './src/controller/pokedex.controller.js'
 import pokedexRouter from './src/routes/pokedex.routes.js';
 
 config();
@@ -18,7 +18,7 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use('/api', pokedexRouter)
+app.use('/api/pokedex', pokedexRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);

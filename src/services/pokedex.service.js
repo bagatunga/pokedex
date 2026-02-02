@@ -13,7 +13,7 @@ export const createPokedex = async function (number, name, type, weakness, descr
         return await pokedex.save();
     } catch (e) {
         // si algo falla al guardar, lanzamos error para que lo gestione el controller
-        throw Error('Error creating pokedex: ');
+        throw Error('Error creating pokemon: ');
     }
 }
 

@@ -1,13 +1,48 @@
 import { Router } from "express";
-import { pruebaPokemon } from "../controller/pokedex.controller.js";
+import { check } from "express-validator";
+import { validateFields } from "../middlewares/validateFields.js";
+import { createPokedex, getPokedex, updatePokedex, deletePokedex } from "../controller/pokedex.controller.js";
 
+const router = Router();
 
-const pokedexRouter = Router();
+// get 
+router.get("/", getPokedex);
 
-pokedexRouter.get("/pokedex", (req, res) => {
-    res.json({ ok: true, message: "Pokédex API funcionando" });
-});
+// post
+router.post(
+    "/",
+    [
+        check("number", "number es obligatorio").not().isEmpty(),
+        check("number", "number debe ser un numero").isNumeric(),
+    
+        check("name", "name es obligatorio").not().isEmpty(),
+        check("type", "type es obligatorio").not().isEmpty(),
+        check("weakness", "weakness es obligatorio").not().isEmpty(),
+        check("description", "description es obligatorio").not().isEmpty(),
 
-pokedexRouter.get("/pokedex/prueba", pruebaPokemon);
+        validateFields
+    ],
+    createPokedex
+);
 
-export default pokedexRouter;
+// put 
+router.put(
+    "/:id",
+    [
+        check("number", "number es obligatorio").not().isEmpty(),
+        check("number", "number debe ser un numero").isNumeric(),
+
+        check("name", "name es obligatorio").not().isEmpty(),
+        check("type", "type es obligatorio").not().isEmpty(),
+        check("weakness", "weakness es obligatorio").not().isEmpty(),
+        check("description", "description es obligatorio").not().isEmpty(),
+
+        validateFields
+    ],
+    updatePokedex
+); 
+
+// delete 
+router.delete("/:id", deletePokedex); 
+
+export default router;
