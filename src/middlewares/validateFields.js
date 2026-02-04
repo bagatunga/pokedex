@@ -6,6 +6,7 @@ export const validateFields = (req, res, next) => {
 
     if (!errors.isEmpty()) {
         return res.status(400).json({
+            msg: "hay errores en la validación",
             errors: errors.array()
         });
     }
