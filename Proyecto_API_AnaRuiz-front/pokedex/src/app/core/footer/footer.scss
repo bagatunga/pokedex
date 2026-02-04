@@ -1,0 +1,27 @@
+@use "sass:color";
+
+.mat-toolbar {
+    background: linear-gradient(135deg,
+            color.adjust(#7F8CAA, $lightness: 14%),
+            #7F8CAA 50%,
+            color.adjust(#7F8CAA, $lightness: -16%));
+
+    color: white;
+    min-height: 64px;
+}
+
+.mat-toolbar-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}

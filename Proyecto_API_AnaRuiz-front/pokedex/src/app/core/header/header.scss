@@ -1,0 +1,68 @@
+@use "sass:color";
+
+$base: #333446;
+
+$grad-oscuro: linear-gradient(135deg,
+        color.adjust($base, $lightness: 10%),
+        $base 50%,
+        color.adjust($base, $lightness: -12%));
+
+
+.header,
+.footer,
+.mat-toolbar {
+    background: $grad-oscuro;
+    color: #fff;
+}
+
+.mat-toolbar {
+    background-color: #213C51;
+    color: white;
+}
+
+.header_container {
+    display: flex;
+    width: 100%;
+    //separacion del logo
+    justify-content: space-between;
+
+    .header_title {
+        .mat-icon {
+            vertical-align: sub;
+        }
+    }
+
+    .header_separator {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .header_menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        .header_button {
+            margin-left: 1em;
+            margin-right: 1em;
+            font-size: 16px;
+
+            a {
+                font-weight: lighter;
+                text-decoration: none;
+                cursor: pointer;
+                color: white;
+            }
+
+            a:hover {
+                color: #EDEDCE;
+            }
+
+            a.active {
+                font-weight: normal;
+                text-decoration: underline;
+                color: lightyellow;
+            }
+        }
+    }
+}
