@@ -1,52 +1,123 @@
 :host {
+  display: block;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+.modificar-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.panel {
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.525);
+  box-shadow: 0 14px 32px rgba(8, 23, 56, 0.35);
+}
+
+.panel-left {
+  width: 360px;
+  flex: 0 0 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.foto-box {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248, 250, 252, 0.7);
+  border-bottom: 1px solid rgba(238, 242, 247, 0.9);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    position: relative;
-    padding: 24px 16px;
-    box-sizing: border-box;
+  }
+}
+
+.btn-add {
+  height: 96px;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.panel-right {
+  flex: 1;
+  min-width: 0;
+  padding: 0;         
 }
 
 table.mat-mdc-table {
-    width: min(820px, 78%);
-    margin: 18px auto 22px;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
-
-    background: rgba(255, 255, 255, 0.92);
+  width: 100%;
+  margin: 0;
+  background: transparent;
 }
 
 th.mat-mdc-header-cell {
-    background: linear-gradient(180deg, #24324a 0%, #1f2a3a 100%);
-    color: #f8fafc;
-    font-size: 13px;
-    padding: 14px 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, #24324a 0%, #1f2a3a 100%);
+  color: #f8fafc;
+  font-size: 13px;
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 td.mat-mdc-cell {
-    padding: 14px 12px;
-    color: #111827;
-    font-size: 14px;
-    line-height: 1.35;
-    vertical-align: top;
-    border-bottom: 1px solid rgba(238, 242, 247, 0.9);
+  padding: 14px 12px;
+  color: #111827;
+  font-size: 14px;
+  line-height: 1.35;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(238, 242, 247, 0.9);
 }
 
-tr.mat-mdc-row:nth-child(even) td.mat-mdc-cell {
-    background: rgba(248, 250, 252, 0.7);
+td.mat-mdc-cell.mat-column-description {
+  max-width: 420px;
+  white-space: normal;
+  word-break: break-word;
 }
 
-tr.mat-mdc-row:hover td.mat-mdc-cell {
-    background: rgba(243, 244, 246, 0.9);
+th.mat-mdc-header-cell.mat-column-action,
+td.mat-mdc-cell.mat-column-action {
+  width: 130px;
+}
+
+td.mat-mdc-cell.mat-column-action {
+  text-align: center;
 }
 
 @media (max-width: 900px) {
-    table.mat-mdc-table {
-        width: 100%;
-        margin: 16px auto;
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-        min-width: 820px;
-    }
+  .modificar-layout {
+    flex-direction: column;
+    gap: 16px;
+    max-width: 100%;
+  }
+
+  .panel-left {
+    width: 100%;
+    flex: 1;
+  }
+
+  .panel-right {
+    width: 100%;
+  }
+
+  table.mat-mdc-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  td.mat-mdc-cell.mat-column-description {
+    max-width: none;
+    white-space: nowrap;
+  }
 }
