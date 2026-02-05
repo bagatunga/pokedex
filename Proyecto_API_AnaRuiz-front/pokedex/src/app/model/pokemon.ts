@@ -1,4 +1,4 @@
-export interface PokemonModel {
+export class PokemonModel {
     id: number;
     number: number;
     name: string;

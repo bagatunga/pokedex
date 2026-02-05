@@ -4,12 +4,19 @@ import { PokedexService } from '../../services/pokedex-service';
 import { PokemonModel } from '../../model/pokemon';
 import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 @Component({
   selector: 'app-pokemon',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    CommonModule],
   templateUrl: './pokemon.html',
   styleUrl: './pokemon.scss'
 })
@@ -19,15 +26,18 @@ export class Pokemon implements OnInit {
   loading = true;
   error = '';
 
-  dataSource = new MatTableDataSource<PokemonModel>([]);
+  dataSource = new MatTableDataSource<PokemonModel>();
   displayedColumns: string[] = ['number', 'name', 'type', 'weakness', 'description'];
 
-  constructor(private pokedexService: PokedexService) { }
+  constructor(
+    private pokedexService: PokedexService,
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
-    this.pokedexService.getPokedex().subscribe( res => {
-      this.dataSource.data = res.pokedex; 
-    }
+    this.pokedexService.getPokedex().subscribe(
+      res => this.dataSource.data = res.pokedex
     );
   }
+
 }
