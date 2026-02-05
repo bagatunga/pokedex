@@ -16,6 +16,11 @@ $grad-oscuro: linear-gradient(135deg,
 }
 
 .mat-toolbar {
+    font-family: "Press Start 2P", system-ui, sans-serif;
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.4px;
+    min-height: 56px;
     background-color: #213C51;
     color: white;
 }
@@ -23,7 +28,6 @@ $grad-oscuro: linear-gradient(135deg,
 .header_container {
     display: flex;
     width: 100%;
-    //separacion del logo
     justify-content: space-between;
 
     .header_title {
@@ -31,12 +35,6 @@ $grad-oscuro: linear-gradient(135deg,
             vertical-align: sub;
         }
     }
-
-    .header_separator {
-        margin-left: 30px;
-        margin-right: 30px;
-    }
-
     .header_menu {
         display: flex;
         flex-direction: row;
@@ -48,6 +46,8 @@ $grad-oscuro: linear-gradient(135deg,
             font-size: 16px;
 
             a {
+                font-size: 11px;
+                text-decoration-thickness: 2px;
                 font-weight: lighter;
                 text-decoration: none;
                 cursor: pointer;

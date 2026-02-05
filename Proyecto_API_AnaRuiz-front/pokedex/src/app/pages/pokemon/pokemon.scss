@@ -1,0 +1,54 @@
+:host {
+    display: block;
+    position: relative;
+    padding: 24px 16px;
+    box-sizing: border-box;
+}
+
+table.mat-mdc-table {
+    width: min(820px, 78%);
+    margin: 18px auto 22px;
+    border-radius: 14px;
+    overflow: hidden;
+
+    border: 1px solid rgba(230, 232, 238, 0.9);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+
+    background: rgba(255, 255, 255, 0.92);
+}
+
+th.mat-mdc-header-cell {
+    background: linear-gradient(180deg, #24324a 0%, #1f2a3a 100%);
+    color: #f8fafc;
+    font-size: 13px;
+    padding: 14px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+td.mat-mdc-cell {
+    padding: 14px 12px;
+    color: #111827;
+    font-size: 14px;
+    line-height: 1.35;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(238, 242, 247, 0.9);
+}
+
+tr.mat-mdc-row:nth-child(even) td.mat-mdc-cell {
+    background: rgba(248, 250, 252, 0.7);
+}
+
+tr.mat-mdc-row:hover td.mat-mdc-cell {
+    background: rgba(243, 244, 246, 0.9);
+}
+
+@media (max-width: 900px) {
+    table.mat-mdc-table {
+        width: 100%;
+        margin: 16px auto;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        min-width: 820px;
+    }
+}
