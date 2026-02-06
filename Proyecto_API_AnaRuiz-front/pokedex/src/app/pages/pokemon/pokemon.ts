@@ -22,9 +22,6 @@ import { Modificar } from '../modificar/modificar';
 })
 
 export class Pokemon implements OnInit {
-  pokedex: PokemonModel[] = [];
-  loading = true;
-  error = '';
 
   dataSource = new MatTableDataSource<PokemonModel>();
   displayedColumns: string[] = ['number', 'name', 'type', 'weakness', 'description', 'action'];
@@ -35,9 +32,9 @@ export class Pokemon implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pokedexService.getPokedex().subscribe(
-      res => this.dataSource.data = res.pokedex
-    );
+    this.pokedexService.getPokedex().subscribe(res => {
+      this.dataSource.data = res.pokedex;
+    });
   }
 
   createPokemon() {

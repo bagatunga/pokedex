@@ -8,38 +8,38 @@
 
     <form>
 
-        <mat-form-field class="w100">
+        <mat-form-field class="field">
             <mat-label>Identificador</mat-label>
             <input type="text" matInput placeholder="ID" [(ngModel)]="pokemon.id" name="id" disabled>
         </mat-form-field>
 
-        <mat-form-field class="w100">
+        <mat-form-field class="field">
             <mat-label>Número</mat-label>
             <input type="number" matInput placeholder="Número de la pokédex" [(ngModel)]="pokemon.number" name="number"
                 required min="0">
             <mat-error>El número no puede estar vacío</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w100">
+        <mat-form-field class="field">
             <mat-label>Nombre</mat-label>
             <input type="text" matInput placeholder="Nombre del pokemon" [(ngModel)]="pokemon.name" name="name"
                 required>
             <mat-error>El nombre no puede estar vacío</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w100">
+        <mat-form-field class="field">
             <mat-label>Tipo</mat-label>
             <input type="text" matInput placeholder="Tipo" [(ngModel)]="pokemon.type" name="type" required>
             <mat-error>El tipo no puede estar vacío</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w100">
+        <mat-form-field class="field">
             <mat-label>Debilidad</mat-label>
             <input type="text" matInput placeholder="Debilidad" [(ngModel)]="pokemon.weakness" name="weakness" required>
             <mat-error>La debilidad no puede estar vacía</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w100">
+        <mat-form-field class="field">
             <mat-label>Descripción</mat-label>
             <input type="text" matInput placeholder="Descripción" [(ngModel)]="pokemon.description" name="description"
                 required>
@@ -49,8 +49,8 @@
     </form>
 
     <div class="buttons">
-        <button mat-stroked-button (click)="onClose()">Cerrar</button>
-        <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+        <button mat-stroked-button type="button" (click)="onClose()">Cerrar</button>
+        <button mat-flat-button color="primary" type="button" (click)="onSave()">Guardar</button>
     </div>
 
 </div>

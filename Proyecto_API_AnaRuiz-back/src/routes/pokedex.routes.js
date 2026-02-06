@@ -12,35 +12,26 @@ router.get("/", getPokedex);
 router.post(
     "/",
     [
-        // number: obligatorio, numerico, entero, y con rango logico
         check("number", "number es obligatorio").not().isEmpty(),
         check("number", "number debe ser un numero").isNumeric(),
-        check("number", "number debe ser un numero entero").isInt(), // añadido
-        check("number", "number debe ser mayor que 0").isInt({ min: 1 }), // añadido
+        check("number", "number debe ser un numero entero").isInt(),
+        check("number", "number debe ser mayor que 0").isInt({ min: 1 }),
 
-        // name: obligatorio, sin espacios raros, longitud minima
         check("name", "name es obligatorio").not().isEmpty(),
-        check("name", "name debe tener al menos 2 caracteres").isLength({ min: 2 }), // añadido
-        check("name", "name no puede superar 30 caracteres").isLength({ max: 30 }), // añadido
-        check("name", "name no puede llevar solo espacios").trim().not().isEmpty(), // añadido
+        check("name", "name debe tener al menos 2 caracteres").isLength({ min: 2 }),
+        check("name", "name no puede superar 30 caracteres").isLength({ max: 30 }),
 
-        // type: obligatorio y longitud razonable
         check("type", "type es obligatorio").not().isEmpty(),
-        check("type", "type debe tener al menos 3 caracteres").isLength({ min: 3 }), // añadido
-        check("type", "type no puede superar 20 caracteres").isLength({ max: 20 }), // añadido
-        check("type", "type no puede llevar solo espacios").trim().not().isEmpty(), // añadido
+        check("type", "type debe tener al menos 3 caracteres").isLength({ min: 3 }),
+        check("type", "type no puede superar 50 caracteres").isLength({ max: 50 }),
 
-        // weakness: obligatorio y longitud razonable
         check("weakness", "weakness es obligatorio").not().isEmpty(),
-        check("weakness", "weakness debe tener al menos 3 caracteres").isLength({ min: 3 }), // añadido
-        check("weakness", "weakness no puede superar 20 caracteres").isLength({ max: 20 }), // añadido
-        check("weakness", "weakness no puede llevar solo espacios").trim().not().isEmpty(), // añadido
+        check("weakness", "weakness debe tener al menos 3 caracteres").isLength({ min: 3 }),
+        check("weakness", "weakness no puede superar 50 caracteres").isLength({ max: 50 }),
 
-        // description: obligatorio, longitud minima y maxima
         check("description", "description es obligatorio").not().isEmpty(),
-        check("description", "description debe tener al menos 5 caracteres").isLength({ min: 5 }), // añadido
-        check("description", "description no puede superar 200 caracteres").isLength({ max: 200 }), // añadido
-        check("description", "description no puede llevar solo espacios").trim().not().isEmpty(), // añadido
+        check("description", "description debe tener al menos 5 caracteres").isLength({ min: 5 }),
+        check("description", "description no puede superar 200 caracteres").isLength({ max: 200 }), 
 
         validateFields
     ],
@@ -51,7 +42,6 @@ router.post(
 router.put(
     "/:id",
     [
-        // mismas validaciones que en post (porque en update tambien pueden meterte datos malos)
         check("number", "number es obligatorio").not().isEmpty(),
         check("number", "number debe ser un numero").isNumeric(),
         check("number", "number debe ser un numero entero").isInt(),

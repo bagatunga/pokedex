@@ -7,21 +7,25 @@ import { PokemonModel } from '../model/pokemon';
 @Injectable({ providedIn: 'root' })
 
 export class PokedexService {
-    private baseUrl = environment.apiUrl;
 
     constructor(private http: HttpClient) { }
+    private baseUrl = environment.apiUrl;
 
-    getPokedex() {
-        return this.http.get<{pokedex: PokemonModel[]}>(this.baseUrl);
+    getPokedex(): Observable<{ pokedex: PokemonModel[] }> {
+        return this.http.get<{ pokedex: PokemonModel[] }>(this.baseUrl);
     }
 
-    savePokedex(pokemon: PokemonModel): Observable<PokemonModel> {
-        const { id } = pokemon;
-        const url = id ? `${this.baseUrl}/${id}` : this.baseUrl;
-        return this.http.put<PokemonModel>(url, pokemon);
+    savePokedex(pokemon: PokemonModel): Observable<any> {
+        const id = pokemon.id;
+
+        if (id) {
+            return this.http.put(`${this.baseUrl}/${id}`, pokemon);
+        }
+
+        return this.http.post(this.baseUrl, pokemon);
     }
 
-    deletePokedex(idPokemon: number): Observable<any> {
+    deletePokedex(idPokemon: string): Observable<any> {
         return this.http.delete(`${this.baseUrl}/${idPokemon}`);
     }
 }

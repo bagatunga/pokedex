@@ -1,5 +1,5 @@
 export class PokemonModel {
-    id: number;
+    id?: string;
     number: number;
     name: string;
     type: string;

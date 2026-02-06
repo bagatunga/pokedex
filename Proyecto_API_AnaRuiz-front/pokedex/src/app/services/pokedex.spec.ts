@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Pokemon } from '../model/pokemon';
+import { PokemonModel } from '../model/pokemon';
 
 describe('Pokemon', () => {
-    let service: Pokemon;
+    let service: PokemonModel;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(Pokemon);
+        service = TestBed.inject(PokemonModel);
     });
 
     it('should be created', () => {
